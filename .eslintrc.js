@@ -1,0 +1,19 @@
+module.exports = {
+  extends: [
+    // add more generic rulesets here, such as:
+    'eslint:recommended',
+    // "plugin:vue/vue3-recommended",
+    'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
+  ],
+  rules: {
+    // override/add rules settings here, such as:
+    // 'vue/no-unused-vars': 'error'
+    'vue/require-default-prop':0
+  },
+  env: {
+    "node": true,
+    "browser": true,
+    "commonjs": true,
+    "amd": true
+  },
+}
