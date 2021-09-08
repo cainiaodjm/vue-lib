@@ -30,6 +30,9 @@ export default {
             activeNames: [].concat(this.value)
         }
     },
+    created(){
+      this.$on('item-click',this.handleItemClick)
+    },
     methods:{
         setActiveNames(activeNames){
             activeNames=[].concat(activeNames)
@@ -37,7 +40,26 @@ export default {
             this.activeNames = activeNames
             this.$emit('input',value)
             this.$emit('change',value)
+        },
+        handleItemClick(item) {
+        if (this.accordion) {
+          this.setActiveNames(
+            (this.activeNames[0] || this.activeNames[0] === 0) &&
+            this.activeNames[0] === item.name
+              ? '' : item.name
+          );
+        } else {
+          let activeNames = this.activeNames.slice(0);
+          let index = activeNames.indexOf(item.name);
+
+          if (index > -1) {
+            activeNames.splice(index, 1);
+          } else {
+            activeNames.push(item.name);
+          }
+          this.setActiveNames(activeNames);
         }
+      }
     }
 
 }

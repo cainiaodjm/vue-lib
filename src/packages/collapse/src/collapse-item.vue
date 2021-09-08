@@ -12,6 +12,7 @@
       <div
         class="el-collapse-item__header"
         @click="handleHeaderClick"
+        @focus="handleFocus"
       >
         <slot name="title">
           {{ title }}
@@ -40,13 +41,17 @@
 </template>
 <script>
 import ElCollapseTransition from '../../../transitions/collapse-transition';
-  import { generateId } from '../../../utils/util';
+import Emitter from '../../../mixins/emitter'
+import { generateId } from '../../../utils/util';
 export default {
     name:'ElCollapseItem',
     componentName: 'ElCollapseItem',
     components:{
       ElCollapseTransition
     },
+    mixins:[
+      Emitter
+    ],
     inject: ['collapse'],
     props:{
         title:String,
@@ -61,6 +66,8 @@ export default {
     },
     data(){
       return {
+        focusing: false,
+        isClick: false,
         id:generateId()
       }
     },
@@ -70,8 +77,20 @@ export default {
         }
     },
     methods:{
+      handleFocus(){
+        setTimeout(() => {
+          if (!this.isClick) {
+            this.focusing = true;
+          } else {
+            this.isClick = false;
+          }
+        }, 50);
+      },
       handleHeaderClick(){
-        
+        if(this.disabled) return;
+        this.focusing = false;
+        this.isClick = true;
+        this.dispatch('ElCollapse','item-click',this)
       }
     }
 }
