@@ -46,16 +46,16 @@
         overflow: hidden;
         box-sizing: border-box;
         border-bottom: 1px solid $--collapse-border-color;
-      }
+    }
     
-      @include e(content) {
+    @include e(content) {
         padding-bottom: 25px;
         font-size: $--collapse-content-font-size;
         color: $--collapse-content-font-color;
         line-height: 1.769230769230769;
-      }
-    
-      &:last-child {
+    }
+
+    &:last-child {
         margin-bottom: -1px;
-      }
+    }
 }

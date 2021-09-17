@@ -40,9 +40,12 @@
   </div>
 </template>
 <script>
-import ElCollapseTransition from '../../../transitions/collapse-transition';
+
 import Emitter from '../../../mixins/emitter'
 import { generateId } from '../../../utils/util';
+import ElCollapseTransition from '../../../transitions/collapse-transition'
+
+
 export default {
     name:'ElCollapseItem',
     componentName: 'ElCollapseItem',
@@ -76,6 +79,7 @@ export default {
             return this.collapse.activeNames.indexOf(this.name)>-1
         }
     },
+    
     methods:{
       handleFocus(){
         setTimeout(() => {

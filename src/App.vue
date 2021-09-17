@@ -90,20 +90,81 @@
         </el-collapse-item>
       </ElCollapse>
     </div>
+    <div class="example">
+      ElCollapseTransition
+      <el-button
+       
+        size="small"
+        @click="show=!show"
+      >
+        {{ show ? '隐藏':'显示' }}
+      </el-button>
+      <ElCollapseTransition>
+        <div
+          v-show="show"
+          class="box"
+        >
+          11111
+        </div>
+      </ElCollapseTransition>
+    </div>
+    <div class="example">
+      ElDialog
+      <el-button
+       
+        size="small"
+        @click="dialog = true"
+      >
+        打开Modal
+      </el-button>
+      <el-dialog
+        title="提示"
+        :visible.sync="dialog"
+        width="30%"
+      >
+        <span>这是一段信息</span>
+        <span
+          slot="footer"
+          class="dialog-footer"
+        >
+          <el-button @click="dialog = false">取 消</el-button>
+          <el-button
+            type="primary"
+            @click="dialog = false"
+          >确 定</el-button>
+        </span>
+      </el-dialog>
+    </div>
+    <div class="example">
+      ElCheckbox
+      <el-checkbox />
+    </div>
   </div>
 </template>
 <script>
+// import CollapseTransition from './transitions/collapse-transition'
+import ElCollapseTransition from './transitions/collapse-transition'
 export default {
   name: "App",
+  components:{
+  ElCollapseTransition
+  },
   data() {
     return {
       message: "Hello Vue",
-      activeNames:["1"]
+      activeNames:["1"],
+      show:false,
+      dialog:false
     }
   },
   methods:{
-    handleClick(e){
-      console.log(e)
+    handleClick(){
+    
+      // console.log(CollapseTransition)
+    },
+   
+    handleOpen(){
+     
     }
   }
 }
